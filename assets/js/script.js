@@ -228,7 +228,7 @@ let showChatList = () => {
 let sendMessage = () => {
 	let value = DOM.messageInput.value;
 	DOM.messageInput.value = "";
-	if (value === "") return;
+	if (value.trim() === "") return;
 
 	let msg = {
 		sender: user.id,

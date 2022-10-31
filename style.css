@@ -165,7 +165,7 @@ Author: جلیل نوری
 }
 
 #message-area .overlay {
-	background: url(images/bg.png);
+	background: url(assets/images/bg.png);
 }
 
 #input-area {
@@ -203,7 +203,7 @@ Author: جلیل نوری
 
 #messages {
 	flex: 1!important;
-	background-image:url(images/bg.png) ;
+	background-image:url(assets/images/bg.png) ;
 	overflow: auto;
 }
 
