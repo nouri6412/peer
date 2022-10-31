@@ -53,8 +53,12 @@
       conn1.on("data", (data) => {
         // Will print 'hi!'
         console.log(data);
-       $('#res-box').append(data);
+        $('#res-box').append(data);
       });
+    });
+
+    peer.on('data', function(data) {
+      console.log('Received', data);
     });
 
 
@@ -65,7 +69,7 @@
     const remote_video = document.getElementById('vid-box');
     remote_video.autoplay = true;
 
-    const stream_1=null;
+    const stream_1 = null;
 
     function call() {
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -73,7 +77,7 @@
           video: true,
           audio: true
         }).then(function(stream) {
-         // stream_1=stream;
+          // stream_1=stream;
           video.srcObject = stream;
           //video.play();
           const call = peer.call($('#did').val(), stream);
@@ -95,23 +99,23 @@
       //   console.log('calling');
       //  // video.play();
       //   remote_video.srcObject = remoteStream;
-        
+
       //  // remote_video.play();
-   
+
       //   // Show stream in some <video> element.
       // });
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({
-        video: true,
-        audio: true
-      }).then(function(stream) {
-        call.answer(stream); // Answer the call with an A/V stream.
-        call.on("stream", (remoteStream) => {
-          remote_video.srcObject = remoteStream;
-          remote_video.play();
-          // Show stream in some <video> element.
+        navigator.mediaDevices.getUserMedia({
+          video: true,
+          audio: true
+        }).then(function(stream) {
+          call.answer(stream); // Answer the call with an A/V stream.
+          call.on("stream", (remoteStream) => {
+            remote_video.srcObject = remoteStream;
+            remote_video.play();
+            // Show stream in some <video> element.
+          });
         });
-      });
       }
     });
   </script>
