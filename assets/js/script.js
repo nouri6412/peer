@@ -126,7 +126,7 @@ let generateChatList = () => {
 
 let addDateToMessageArea = (date) => {
 	DOM.messages.innerHTML += `
-	<div class="mx-auto my-2 bg-primary text-white small py-1 px-2 rounded">
+	<div class="mx-auto my-2 bg-white text-muted  small py-1 px-2 rounded">
 		${date}
 	</div>
 	`;
