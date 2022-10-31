@@ -36,11 +36,16 @@
     });
 
     let conn;
+    let state_conn = false;
 
     function start_connection() {
       conn = peer.connect($('#did').val());
       conn.on("open", () => {
         conn.send("hi!");
+        // state_conn = true;
+        // conn.on('data', function(data) {
+        //   console.log('Received: ' + data);
+        // });
       });
     }
 
@@ -49,6 +54,11 @@
     }
 
     peer.on("connection", (conn1) => {
+      // if (state_conn == false) {
+      //   conn = conn1;
+      //   state_conn = true;
+      // }
+
       console.log(conn1);
       conn1.on("data", (data) => {
         // Will print 'hi!'
@@ -57,9 +67,7 @@
       });
     });
 
-    peer.on('data', function(data) {
-      console.log('Received', data);
-    });
+
 
 
     const video = document.getElementById('my-vid-box');
