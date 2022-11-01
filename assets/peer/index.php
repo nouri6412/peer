@@ -1,7 +1,7 @@
 <html>
 
 <head>
-  <script src="peerjs.min.js"></script>
+  <script src="peerjs.js"></script>
   <!-- <script src="https://unpkg.com/peerjs@1.3.2/dist/peerjs.min.js"></script> -->
 
   <script src="jquery.min.js"></script>
@@ -41,10 +41,18 @@
       conn = peer.connect($('#did').val());
       conn.on("open", () => {
         conn.send("hi!");
+        console.log("hi!");
         conn.on('data', function(data) {
           console.log('3')
-          console.log('Received: ' + data);
+          $('#res-box').append('<div>' + data + '</div>');
         });
+      });
+      conn.on("close", () => {
+        console.log('conn close');
+      });
+      conn.on("error", (err) => {
+        console.log('conn close');
+        console.log(err);
       });
     }
 
@@ -52,18 +60,40 @@
       conn.send($('#mes-box').val());
     }
 
+
     peer.on("connection", (conn1) => {
+      if (conn) {
+
+      } else {
+        conn = conn1;
+      }
       console.log(conn1);
- 
+
       conn1.on("data", (data) => {
-        // Will print 'hi!'
         console.log(data);
-        $('#res-box').append(data);
+        $('#res-box').append('<div>' + data + '</div>');
+      });
+      conn1.on("close", () => {
+        console.log('conn close');
+      });
+      conn1.on("error", (err) => {
+        console.log('conn close');
+        console.log(err);
       });
     });
 
+    peer.on("close", () => {
+      console.log("close peer");
+    });
 
+    peer.on("disconnected", () => {
+      console.log("disconnected peer");
+    });
 
+    peer.on("error", (err) => {
+      console.log("error peer");
+      console.log(err);
+    });
 
     const video = document.getElementById('my-vid-box');
     video.autoplay = true;
