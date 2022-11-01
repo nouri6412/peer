@@ -13,21 +13,39 @@ class WhatsMess_Sql_Scripts
     $charset_collate = $wpdb->get_charset_collate();
     $sql = '';
 
-    $table_name = $wpdb->prefix . "user_relation";
+    $table_name = $wpdb->prefix . "mes_user_relation";
     $sql .= "CREATE TABLE $table_name ( 
     `id` BIGINT NOT NULL AUTO_INCREMENT ,
     `user_id_1` BIGINT NOT NULL ,
     `user_id_2` BIGINT NOT NULL ,
-       PRIMARY KEY (`id`))ENGINE=InnoDB $charset_collate; ";
+    PRIMARY KEY (`id`)
+       )ENGINE=InnoDB $charset_collate; ";
 
+    $table_name = $wpdb->prefix . "mes_groups";
+
+    $sql .= "CREATE TABLE $table_name ( 
+  `id` BIGINT NOT NULL AUTO_INCREMENT ,
+  `user_id` BIGINT NOT NULL ,
+  `info` JSON NOT NULL ,PRIMARY KEY (`id`)
+  )ENGINE=InnoDB $charset_collate; ";
+
+$table_name = $wpdb->prefix . "mes_message";
+
+$sql .= "CREATE TABLE $table_name ( 
+`id` BIGINT NOT NULL AUTO_INCREMENT ,
+`user_id` BIGINT NOT NULL ,
+`type_id` INT NOT NULL ,
+`res_id` BIGINT NOT NULL ,
+`info` JSON NOT NULL ,PRIMARY KEY (`id`)
+)ENGINE=InnoDB $charset_collate; ";
     return $sql;
   }
 
   public function install()
   {
-      require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-      dbDelta($this->get_install_script());
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($this->get_install_script());
   }
 }
 
-$WhatsMess_Sql_Scripts =new WhatsMess_Sql_Scripts;
+$WhatsMess_Sql_Scripts = new WhatsMess_Sql_Scripts;

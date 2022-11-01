@@ -1,5 +1,7 @@
 <?php
 define('WhatsMess_FILE', __FILE__);
+define('WhatsMess_FILE_Rewrite', 'rewrite_whats_mess_api');
+
 /// ajax
 function mbm_theme_scripts()
 {
