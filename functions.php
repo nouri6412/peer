@@ -1,4 +1,5 @@
 <?php
+define('WhatsMess_FILE', __FILE__);
 /// ajax
 function mbm_theme_scripts()
 {
@@ -29,3 +30,9 @@ function mbm_theme_scripts()
 add_action('wp_enqueue_scripts', 'mbm_theme_scripts');
 
 add_filter('show_admin_bar', '__return_false');
+
+require get_template_directory() . "/inc/sql_scripts.php";
+
+foreach (glob(get_template_directory() . "/inc/api/*.php") as $filename) {
+    require $filename;
+}
