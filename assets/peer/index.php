@@ -19,6 +19,8 @@
     <button onclick="send_message()">send message</button>
     <br>
     <div id="res-box"></div>
+    <button onclick="askNotificationPermission()" id="enable">Enable notifications</button>
+    <button onclick="showNotification()">Send notifications</button>
     <button onclick="call()">Call</button>
     <video width="300" height="225" id="my-vid-box" autoplay></video>
     <div></div>
@@ -151,6 +153,69 @@
         });
       }
     });
+
+    function askNotificationPermission() {
+      // function to actually ask the permissions
+      function handlePermission(permission) {
+        // set the button to shown or hidden, depending on what the user answers
+        // notificationBtn.style.display =
+        //   Notification.permission === 'granted' ? 'none' : 'block';
+      }
+
+      // Let's check if the browser supports notifications
+      if (!('Notification' in window)) {
+        console.log("This browser does not support notifications.");
+      } else if (checkNotificationPromise()) {
+        Notification.requestPermission().then((permission) => {
+          handlePermission(permission);
+        });
+      } else {
+        Notification.requestPermission((permission) => {
+          handlePermission(permission);
+        });
+      }
+    }
+
+    function checkNotificationPromise() {
+      try {
+        Notification.requestPermission().then();
+      } catch (e) {
+        return false;
+      }
+
+      return true;
+    }
+
+    function send_notification() {
+      if (checkNotificationPromise()) {
+        const img = 'icon.png';
+        const text = `HEY! Notiffication.`;
+        const notification = new Notification('To do list', {
+          body: text,
+          icon: img
+        });
+      } else {
+        alert('not permission');
+      }
+
+    }
+
+    navigator.serviceWorker.register('sw.js');
+
+    function showNotification() {
+      Notification.requestPermission((result) => {
+        if (result === 'granted') {
+          navigator.serviceWorker.ready.then((registration) => {
+            registration.showNotification('Vibration Sample', {
+              body: 'Buzz! Buzz!',
+              icon: 'icon.png',
+              vibrate: [200, 100, 200, 100, 200, 100, 200],
+              tag: 'vibration-sample'
+            });
+          });
+        }
+      });
+    }
   </script>
 </body>
 
