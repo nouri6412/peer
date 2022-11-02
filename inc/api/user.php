@@ -1,10 +1,13 @@
 <?php
+
+
 class WhatsMessApiUser
 {
     public function __construct()
     {
     }
-    public function login()
+
+    public function forward()
     {
         global $wp_query;
 
@@ -14,15 +17,14 @@ class WhatsMessApiUser
             return;
         }
 
-
- 
-
-        # Check method name
         if ($method == "whatsmess_login") {
-
-            wp_send_json_error(["method"=>"login"], 200);
-
-            return;
+            $this->login();
+        } else if ($method == "whatsmess_signup") {
+            $this->signup();
+        }
+    }
+    public function login()
+    {
 
             // if ( ! empty( $_POST['log'] ) ) {
             //     $credentials['user_login'] = wp_unslash( $_POST['log'] );
@@ -38,27 +40,10 @@ class WhatsMessApiUser
 
             wp_send_json_success($array, 200);
             //wp_send_json_error
-        } 
     }
 
     public function signup()
     {
-        global $wp_query;
-
-        # Don't do anything unless this is an AJAX request
-        $method = $wp_query->get(WhatsMess_FILE_Rewrite);
-        if (!$method) {
-            return;
-        }
-
- 
-
-        # Check method name
-        if ($method == "whatsmess_signup") {
-
-            wp_send_json_error(["method"=>"signup"], 200);
-
-            return;
 
             $username = "";
             $password = "";
@@ -91,22 +76,21 @@ class WhatsMessApiUser
 
             wp_send_json_success($array, 200);
             //wp_send_json_error
-        } 
     }
 }
+
 
 add_action('template_redirect', 'whatsmess_signup');
 add_action('template_redirect', 'whatsmess_login');
 
-
 function whatsmess_login()
 {
     $WhatsMessApiUser = new WhatsMessApiUser;
-    $WhatsMessApiUser->login();
+    $WhatsMessApiUser->forward();
 }
 
 function whatsmess_signup()
 {
     $WhatsMessApiUser = new WhatsMessApiUser;
-    $WhatsMessApiUser->signup();
+    $WhatsMessApiUser->forward();
 }
