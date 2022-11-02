@@ -1,5 +1,4 @@
 <?php
-return;
 class WhatsMessApiUser
 {
     public function __construct()
