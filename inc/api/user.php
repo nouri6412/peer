@@ -14,9 +14,15 @@ class WhatsMessApiUser
             return;
         }
 
+
+ 
+
         # Check method name
         if ($method == "whatsmess_login") {
 
+            wp_send_json_error(["method"=>"login"], 200);
+
+            return;
 
             // if ( ! empty( $_POST['log'] ) ) {
             //     $credentials['user_login'] = wp_unslash( $_POST['log'] );
@@ -32,10 +38,7 @@ class WhatsMessApiUser
 
             wp_send_json_success($array, 200);
             //wp_send_json_error
-        } else {
-            $array = [];
-            wp_send_json_error($array, 200);
-        }
+        } 
     }
 
     public function signup()
@@ -48,8 +51,15 @@ class WhatsMessApiUser
             return;
         }
 
+ 
+
         # Check method name
         if ($method == "whatsmess_signup") {
+
+            wp_send_json_error(["method"=>"signup"], 200);
+
+            return;
+
             $username = "";
             $password = "";
             $email = "";
@@ -81,15 +91,13 @@ class WhatsMessApiUser
 
             wp_send_json_success($array, 200);
             //wp_send_json_error
-        } else {
-            $array = [];
-            wp_send_json_error($array, 200);
-        }
+        } 
     }
 }
 
-add_action('template_redirect', 'whatsmess_login');
 add_action('template_redirect', 'whatsmess_signup');
+add_action('template_redirect', 'whatsmess_login');
+
 
 function whatsmess_login()
 {
