@@ -3,7 +3,7 @@ let user = {
 	id: 0,
 	name: "Anish",
 	number: "+91 91231 40293",
-	pic: custom_theme_mbm_object.asset_url+"images/asdsd12f34ASd231.png"
+	pic: whatsmess_chat_object.asset_url+"images/asdsd12f34ASd231.png"
 };
 
 let contactList = [
@@ -11,35 +11,35 @@ let contactList = [
 		id: 0,
 		name: "Anish",
 		number: "+91 91231 40293",
-		pic: custom_theme_mbm_object.asset_url+"images/asdsd12f34ASd231.png",
+		pic: whatsmess_chat_object.asset_url+"images/asdsd12f34ASd231.png",
 		lastSeen: "Apr 29 2018 17:58:02"
 	},
 	{
 		id: 1,
 		name: "Nitin",
 		number: "+91 98232 37261",
-		pic: custom_theme_mbm_object.asset_url+"images/Ass09123asdj9dk0qw.jpg",
+		pic: whatsmess_chat_object.asset_url+"images/Ass09123asdj9dk0qw.jpg",
 		lastSeen: "Apr 28 2018 22:18:21"
 	},
 	{
 		id: 2,
 		name: "Sanjay",
 		number: "+91 72631 2937",
-		pic: custom_theme_mbm_object.asset_url+"images/asd1232ASdas123a.png",
+		pic: whatsmess_chat_object.asset_url+"images/asd1232ASdas123a.png",
 		lastSeen: "Apr 28 2018 19:23:16"
 	},
 	{
 		id: 3,
 		name: "Suvro Mobile",
 		number: "+91 98232 63547",
-		pic: custom_theme_mbm_object.asset_url+"images/Alsdk120asdj913jk.jpg",
+		pic: whatsmess_chat_object.asset_url+"images/Alsdk120asdj913jk.jpg",
 		lastSeen: "Apr 29 2018 11:16:42"
 	},
 	{
 		id: 4,
 		name: "Dee",
 		number: "+91 72781 38213",
-		pic: custom_theme_mbm_object.asset_url+"images/dsaad212312aGEA12ew.png",
+		pic: whatsmess_chat_object.asset_url+"images/dsaad212312aGEA12ew.png",
 		lastSeen: "Apr 27 2018 17:28:10"
 	}
 ];
@@ -49,19 +49,19 @@ let groupList = [
 		id: 1,
 		name: "Programmers",
 		members: [0, 1, 3],
-		pic: custom_theme_mbm_object.asset_url+"images/0923102932_aPRkoW.jpg"
+		pic: whatsmess_chat_object.asset_url+"images/0923102932_aPRkoW.jpg"
 	},
 	{
 		id: 2,
 		name: "Web Developers",
 		members: [0, 2],
-		pic: custom_theme_mbm_object.asset_url+"images/1921231232_Ag1asE.png"
+		pic: whatsmess_chat_object.asset_url+"images/1921231232_Ag1asE.png"
 	},
 	{
 		id: 3,
 		name: "notes",
 		members: [0],
-		pic: custom_theme_mbm_object.asset_url+"images/8230192232_asdEWq2.png"
+		pic: whatsmess_chat_object.asset_url+"images/8230192232_asdEWq2.png"
 	}
 ];
 

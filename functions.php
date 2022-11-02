@@ -1,5 +1,9 @@
 <?php
 define('WhatsMess_FILE', __FILE__);
+
+
+define('apimes', 'apimes');
+
 define('WhatsMess_FILE_Rewrite', 'rewrite_whats_mess_api');
 
 function whatsmess_theme_support()
@@ -16,26 +20,31 @@ function mbm_theme_scripts()
 {
     global $wp_query;
 
-    // wp_enqueue_script(
-    //     'mbm_ajax_script',
-    //     get_template_directory_uri() . '/assets/js/ajax-v16.js',
-    //     array('jquery'),
-    //     1,
-    //     false
-    // );
-        wp_enqueue_script(
-        'mbm_ajax_script',
-        get_template_directory_uri() . '/assets/js/datastore.js',
+    wp_enqueue_script(
+        'mbm_user_script',
+        get_template_directory_uri() . '/assets/js/api-user.js',
+        array('jquery'),
+        1,
+        false
+    );
+    wp_enqueue_script(
+        'mbm_chat_script',
+        get_template_directory_uri() . '/assets/js/chat.js',
         array('jquery'),
         1,
         false
     );
 
-    wp_localize_script('mbm_ajax_script', 'custom_theme_mbm_object', array(
-        'ajaxurl' => admin_url('admin-ajax.php'),
+    $arg=array(
         'siteurl' => site_url(),
+        'apiurl' => site_url().'/' . apimes.'/',
         'asset_url' => get_template_directory_uri() . "/assets/"
-    ));
+    );
+
+    wp_localize_script('mbm_user_script', 'whatsmess_user_object',$arg );
+
+    wp_localize_script('mbm_chat_script', 'whatsmess_chat_object',$arg);
+
 }
 
 add_action('wp_enqueue_scripts', 'mbm_theme_scripts');

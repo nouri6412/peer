@@ -8,7 +8,7 @@ class WhatsMessApiBase
     public function define_url()
     {
         add_rewrite_tag('%'.WhatsMess_FILE_Rewrite.'%', '([^&/]+)');
-        add_rewrite_rule('apimes/?([^/]*)', 'index.php?'.WhatsMess_FILE_Rewrite.'=$matches[1]', 'top');
+        add_rewrite_rule(apimes.'/?([^/]*)', 'index.php?'.WhatsMess_FILE_Rewrite.'=$matches[1]', 'top');
     }
 }
 $WhatsMessApiBase =new WhatsMessApiBase;
